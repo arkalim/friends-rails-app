@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5"> <!-- Adjust the col-md-8 to change the width -->
+      <div class="card">
+        <div class="card-header bg-secondary text-white">
+          <h1><%= @friend.name %></h1>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <p>
+              <strong>Email: </strong><%= @friend.email %>
+            </p>
+            <p>
+              <strong>Phone: </strong><%= @friend.phone %>
+            </p>
+          </div>
+          <div class="d-flex justify-content-center gap-2 mt-4">
+            <%= button_to "Back", friends_path, method: :get, class: "btn btn-secondary btn-sm" %>
+            <%= button_to "Edit", edit_friend_path(@friend), method: :get, class: "btn btn-warning btn-sm" %>
+            <%= button_to "Delete", friend_path(@friend), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

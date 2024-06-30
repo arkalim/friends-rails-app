@@ -1,0 +1,29 @@
+<%= form_with(model: friend) do |form| %>
+  <% if friend.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(friend.errors.count, "error") %> prohibited this friend from being saved:</h2>
+
+      <ul>
+        <% friend.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.text_field :name, placeholder: "Name", class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.text_field :email, placeholder: "Email", class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.text_field :phone, placeholder: "Phone", class: "form-control" %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-success" %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<h1 class="mt-3 mb-3">Edit friend</h1>
+
+<%= render "form", friend: @friend %>
+
+<div class="d-flex justify-content-center gap-2 mt-4">
+  <%= button_to "Back", friends_path, method: :get, class: "btn btn-secondary btn-sm" %>
+  <%= button_to "View", friend_path, method: :get, class: "btn btn-outline-primary btn-sm" %>
+</div>

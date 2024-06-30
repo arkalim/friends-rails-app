@@ -1,0 +1,28 @@
+<h1>Friends</h1>
+
+<table class="table table-dark table-striped table-hover table-bordered">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center">Name</th>
+      <th scope="col" class="text-center">Email</th>
+      <th scope="col" class="text-center">Phone Number</th>
+      <th scope="col" class="text-center"></th>
+    </tr>
+  </thead>
+  <tbody class="table-light">
+    <% @friends.each do |friend| %>
+      <tr>
+        <td class="text-center"><%= friend.name %></td>
+        <td class="text-center"><%= friend.email %></td>
+        <td class="text-center"><%= friend.phone %></td>
+        <td class="text-center"><%= button_to "View", friend_path(friend), method: :get, class: "btn btn-outline-primary btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id="friends">
+  
+</div>
+
+<%= button_to "New Friend", new_friend_path, method: :get, class: "btn btn-success" %>
