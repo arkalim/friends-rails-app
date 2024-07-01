@@ -1,2 +1,27 @@
-<h1>Friends App</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="about-section mt-5 mb-5">
+        <h2 class="text-center mb-3">Friends App 👋🏽</h2>
+        <p class="text-justify">At Friends App, we believe in the power of friendship. Our platform is designed to help you easily manage your friends' contact details, so that you can create lasting friendships.</p>
+    </div>
+
+    <div class="how-it-works mb-5">
+        <h2 class="text-center mb-3">How It Works</h2>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Sign up and create your profile.</li>
+            <li class="list-group-item">Store your friends' details.</li>
+            <li class="list-group-item">View your friends' details anytime!</li>
+        </ol>
+    </div>
+
+    <% unless user_signed_in? %>
+      <div class="join-now text-center">
+        <%= button_to "Join Now", new_user_registration_path, class: "btn btn-success btn-lg"%>
+      </div>
+    <% else %>
+      <div class="join-now text-center">
+        <%= button_to "View Friends", friends_path, class: "btn btn-success btn-lg"%>
+      </div>
+    <% end %>
+  </div>
+</div>
