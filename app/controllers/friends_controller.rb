@@ -4,7 +4,7 @@ class FriendsController < ApplicationController
 
   # GET /friends or /friends.json
   def index
-    @friends = Friend.all
+    @friends = current_user.friends
   end
 
   # GET /friends/1 or /friends/1.json
@@ -66,6 +66,6 @@ class FriendsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def friend_params
-      params.require(:friend).permit(:name, :email, :phone)
+      params.require(:friend).permit(:name, :email, :phone).merge(user_id: current_user.id)
     end
 end

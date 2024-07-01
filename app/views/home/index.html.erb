@@ -16,11 +16,11 @@
 
     <% unless user_signed_in? %>
       <div class="join-now text-center">
-        <%= button_to "Join Now", new_user_registration_path, class: "btn btn-success btn-lg"%>
+        <%= button_to "Join Now", new_user_registration_path, method: :get, class: "btn btn-success btn-lg"%>
       </div>
     <% else %>
       <div class="join-now text-center">
-        <%= button_to "View Friends", friends_path, class: "btn btn-success btn-lg"%>
+        <%= button_to "View Friends", friends_path, method: :get, class: "btn btn-success btn-lg"%>
       </div>
     <% end %>
   </div>
