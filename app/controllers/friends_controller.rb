@@ -6,7 +6,7 @@ class FriendsController < ApplicationController
 
   # GET /friends or /friends.json
   def index
-    @friends = filter(Friend)
+    @friends = filter(Friend, current_user.friends)
   end
 
   # GET /friends/1 or /friends/1.json

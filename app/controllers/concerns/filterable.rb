@@ -1,9 +1,9 @@
 module Filterable
   extend ActiveSupport::Concern
 
-  def filter(resource)
+  def filter(resource, records)
     save_filters(resource)
-    apply_filters(resource)
+    apply_filters(records, resource)
   end
 
   private
@@ -14,7 +14,7 @@ module Filterable
     session[@filter_key].merge!(params.permit(resource::FILTER_PARAMS))
   end
 
-  def apply_filters(resource)
-    resource.filter(session[@filter_key])
+  def apply_filters(records, resource)
+    resource.filter(records, session[@filter_key])
   end
 end

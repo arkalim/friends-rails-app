@@ -3,7 +3,7 @@
 <div>
   <%= form_with url: friends_path, method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "friends" } do |form| %>
     <div class="input-group mb-3">
-      <%= form.text_field :search, placeholder: "Search friends", class: "form-control", data: { action: "input->search-form#search" } %>
+      <%= form.text_field :search, placeholder: "Search friends", value: session.dig('friend_params', 'search'), class: "form-control", data: { action: "input->search-form#search" } %>
     </div>
   <% end %>
 </div>

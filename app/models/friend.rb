@@ -7,7 +7,7 @@ class Friend < ApplicationRecord
     where('LOWER(name) LIKE :search OR LOWER(email) LIKE :search OR LOWER(phone) LIKE :search', search: "%#{search_term&.downcase}%")
   }
 
-  def self.filter(filters)
-    Friend.search(filters['search']).order("#{filters['sort_by']} #{filters['sort_direction']}")
+  def self.filter(friends, filters)
+    friends.search(filters['search']).order("#{filters['sort_by']} #{filters['sort_direction']}")
   end
 end
