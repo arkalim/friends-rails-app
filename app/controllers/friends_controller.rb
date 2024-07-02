@@ -2,11 +2,11 @@ class FriendsController < ApplicationController
   before_action :set_friend, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
+  include Filterable
+
   # GET /friends or /friends.json
   def index
-    @friends = current_user.friends
-    filter_friends
-    sort_friends
+    @friends = filter(Friend)
   end
 
   # GET /friends/1 or /friends/1.json
@@ -67,21 +67,6 @@ class FriendsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_friend
     @friend = Friend.find(params[:id])
-  end
-
-  def sort_friends
-    @friends = @friends.order("#{params[:sort_by]} #{params[:sort_direction]}") if params[:sort_by].present?
-  end
-
-  def filter_friends
-    return unless params[:search].present?
-
-    search_term = params[:search].downcase
-    @friends = @friends.select do |friend|
-      friend.name.downcase.include?(search_term) ||
-        friend.email.downcase.include?(search_term) ||
-        friend.phone.downcase.include?(search_term)
-    end
   end
 
   # Only allow a list of trusted parameters through.
