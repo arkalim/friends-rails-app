@@ -1,28 +1,36 @@
 <h1>Friends</h1>
 
-<table class="table table-dark table-striped table-hover table-bordered">
-  <thead>
-    <tr>
-      <th scope="col" class="text-center">Name</th>
-      <th scope="col" class="text-center">Email</th>
-      <th scope="col" class="text-center">Phone Number</th>
-      <th scope="col" class="text-center"></th>
-    </tr>
-  </thead>
-  <tbody class="table-light">
-    <% @friends.each do |friend| %>
-      <tr>
-        <td class="text-center"><%= friend.name %></td>
-        <td class="text-center"><%= friend.email %></td>
-        <td class="text-center"><%= friend.phone %></td>
-        <td class="text-center"><%= button_to "View", friend_path(friend), method: :get, class: "btn btn-outline-primary btn-sm" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<div id="friends">
-  
+<div>
+  <%= form_with url: friends_path, method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "friends" } do |form| %>
+    <div class="input-group mb-3">
+      <%= form.text_field :search, placeholder: "Search friends", class: "form-control", data: { action: "input->search-form#search" } %>
+    </div>
+  <% end %>
 </div>
+
+<%= turbo_frame_tag "friends" do %>
+  <table class="table table-dark table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center"><%= sort_link(:name, "Name") %></th>
+        <th scope="col" class="text-center"><%= sort_link(:email, "Email") %></th>
+        <th scope="col" class="text-center"><%= sort_link(:phone, "Phone") %></th>
+        <th scope="col" class="text-center"><%= sort_link(:degree, "Degree") %></th>
+        <th scope="col" class="text-center"></th>
+      </tr>
+    </thead>
+    <tbody class="table-light">
+      <% @friends.each do |friend| %>
+        <tr>
+          <td class="text-center"><%= friend.name %></td>
+          <td class="text-center"><%= friend.email %></td>
+          <td class="text-center"><%= friend.phone %></td>
+          <td class="text-center"><%= friend.degree %></td>
+          <td class="text-center"><%= button_to "View", friend_path(friend), method: :get, data: { turbo: false }, class: "btn btn-outline-primary btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
 <%= button_to "New Friend", new_friend_path, method: :get, class: "btn btn-success" %>

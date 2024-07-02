@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+.sort-link {
+  text-decoration: none;
+  color: white;
+}
